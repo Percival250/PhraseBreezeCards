@@ -28,10 +28,6 @@ def create_library_set_slug(name, user):
         num += 1
     return slug
 
-
-# def lending_page(request):
-#     if request.method == 'GET':
-#         return render(request, template_name='lending_page.html')
 @login_required
 def main_view(request):
     if request.method == 'GET':
@@ -231,11 +227,15 @@ def share_set_view(request, set_slug):
         form = forms.ShareSetForm(request.POST, request.FILES)
         if form.is_valid():
             name = form.cleaned_data['name']
+            category = form.cleaned_data['category']
+            description = form.cleaned_data['category']
             slug = create_library_set_slug(name, request.user)
             new_library_set = community_library.models.Set(
                 name=name,
+                description=description,
                 slug=slug,
                 user=request.user,
+                category=category,
                 cards_count=set.cards.count(),
                 is_published=False
             )

@@ -12,6 +12,7 @@
 
     <h2>{{set.name}}</h2>
     <button><a href="{% url 'copy_set' username set.slug %}">Copy set</a></button>
+    {% if description %}<p>Description: {{ set.description }}</p>{% endif %}
     <p>User: {{ username }}</p>
     <p>Downloads: {{ set.downloads }}</p>
     <p>Total cards: {{ cards_count }}</p>

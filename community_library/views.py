@@ -17,11 +17,22 @@ def create_set_slug(name, user):
 
 
 def library_view(request):
-    if request.method == 'GET':
-        sets = models.Set.objects.filter(is_published=True)
-        template_name = 'community_library/library.html'
-        context = {'sets': sets}
-        return render(request, template_name, context)
+    if request.method == 'POST':
+        form = forms.ChooseCategoryForm(request.POST)
+        if form.is_valid():
+            category = form.cleaned_data['category']
+            search = form.cleaned_data['name']
+            if category.id == 5:
+                sets = models.Set.objects.filter(is_published=True, name__icontains=search).order_by('-downloads')
+            else:
+                sets = models.Set.objects.filter(is_published=True, category=category, name__icontains=search).order_by('-downloads')
+    elif request.method == 'GET':
+        form = forms.ChooseCategoryForm()
+        sets = models.Set.objects.filter(is_published=True).order_by('-downloads')
+
+    template_name = 'community_library/library.html'
+    context = {'sets': sets, 'form': form}
+    return render(request, template_name, context)
 
 
 def set_view(request, username, set_slug):

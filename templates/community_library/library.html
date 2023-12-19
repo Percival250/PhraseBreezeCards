@@ -27,12 +27,12 @@
                 font-size: 20px;
                 color: #000;
             }
+
             h3 {
                 margin: 0;
                 font-size: 20px;
                 color: #FDFDFD;
             }
-
 
             a {
                 text-decoration: none;
@@ -86,14 +86,22 @@
     </head>
     <body>
         <h2>Library</h2>
-        {% for set in sets %}
-            <a href="{% url 'library_set' set.user.username set.slug %}">
-                <div class="card">
-                    <h3>{{ set.name }}</h3>
-                    <button>{{ set.cards_count }} terms</button>
-                    <h3>{{ set.user }}</h3>
-                </div>
-            </a>
-        {% endfor %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+        <hr> <!-- Move the hr tag here -->
+        <div class="card-container">
+            {% for set in sets %}
+                <a href="{% url 'library_set' set.user.username set.slug %}">
+                    <div class="card">
+                        <h3>{{ set.name }}</h3>
+                        <button>{{ set.cards_count }} terms</button>
+                        <h3>{{ set.user }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
     </body>
 {% endblock %}

@@ -42,7 +42,11 @@ class EditCardForm(forms.ModelForm):
 
 
 class ShareSetForm(forms.ModelForm):
+    category = forms.ModelChoiceField(
+        queryset=community_library.models.SetCategory.get_categories_for_choices(),
+        empty_label=None,
+    )
 
     class Meta:
         model = community_library.models.Set
-        fields = ['name']
+        fields = ['name', 'description', 'category']

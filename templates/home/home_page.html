@@ -1,6 +1,6 @@
 {% extends 'base_generic.html' %}
 
-{% block title %}Community Library{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block header %}
     {% include 'header.html' %}
@@ -35,8 +35,7 @@
 
         .card-container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            overflow-x: auto; /* Add this to enable horizontal scrolling if needed */
         }
 
         .card {
@@ -79,13 +78,15 @@
     </style>
 
     <h2>Popular Libraries</h2>
-    {% for set in popular_sets %}
-        <a href="{% url 'library_set' set.user.username set.slug %}">
-            <div class="card">
-                <h3>{{ set.name }}</h3>
-                <button>{{ set.cards_count }} terms</button>
-                <h3>{{ set.user }}</h3>
-            </div>
-        </a>
-    {% endfor %}
+    <div class="card-container">
+        {% for set in popular_sets %}
+            <a href="{% url 'library_set' set.user.username set.slug %}">
+                <div class="card">
+                    <h3>{{ set.name }}</h3>
+                    <button>{{ set.cards_count }} terms</button>
+                    <h3>{{ set.user }}</h3>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}
