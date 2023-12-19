@@ -1,0 +1,20 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    Create new set
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'create_set' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+        <button><a href="{% url 'user_library' %}">Cancel</a> </button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+<a href="#" class="logo">PhraseBreezeCards</a>
+<nav>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'user_library' %}">Your library</a></li>
+        <li><a href="{% url 'community_library' %}">Community library</a></li>
+        <li><a href="/info_list/">About</a></li>
+        <li><a href="/contacts_list/">Contacts</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a>
+            <ul>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'lending_page' %}">Log out</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,17 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Delete account{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+
+    Are you sure you want to delete account?
+    <p>
+        <button><a href="{% url 'delete_account' %}">Delete</a></button>
+        <button><a href="{% url 'profile' %}">Cancel</a></button>
+    </p>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Copy set{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'copy_set' username set.slug %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Copy set</button>
+        <button><a href="{% url 'library_set' username set.slug %}">Cancel</a> </button>
+    </form>
+
+{% endblock %}

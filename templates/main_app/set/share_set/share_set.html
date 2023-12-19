@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Share set{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'share_set' set.slug %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Share set</button>
+        <button><a href="{% url 'set' set.slug %}">Cancel</a> </button>
+    </form>
+
+{% endblock %}

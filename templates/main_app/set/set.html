@@ -1,0 +1,65 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    {{ set.name }}
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ set.name }}</title>
+        <style>
+            body {
+                background: #FDFDFD;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+                color: #000;
+            }
+
+            h2 {
+                margin: 0;
+                font-size: 20px;
+                color: #000;
+            }
+
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+
+            button {
+                padding: 10px;
+                background-color: #007AFF;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                margin-left: 10px;
+                transition: background 0.3s;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>{{ set.name }}</h2>
+            <button><a href="{% url 'rename_set' set.slug %}">Rename set</a></button>
+            <button><a href="{% url 'delete_set_confirm' set.slug %}">Delete set</a></button>
+            <button><a href="{% url 'share_set' set.slug %}">Share set</a></button>
+        <p>
+            <a href="{% url 'set_cards' set.slug %}">Total cards</a>: {{ cards_count }}
+        </p>
+        <button><a href="{% url 'create_card' set.slug %}">Add new card</a></button>
+        <button><a href="{% url 'learn_cards' set.slug %}">Learn cards</a></button>
+    </body>
+{% endblock %}

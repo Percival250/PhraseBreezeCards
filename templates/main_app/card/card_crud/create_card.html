@@ -1,0 +1,20 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    Create card
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'create_card' set.slug %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+        <button><a href="{% url 'set' set.slug %}">Cancel</a> </button>
+    </form>
+
+{% endblock %}

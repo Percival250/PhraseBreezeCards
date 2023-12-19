@@ -1,0 +1,82 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Info List{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: #FDFDFD;
+            color: #333; /* Цвет текста */
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px; /* Добавлен отрицательный margin для компенсации padding внутри col-md-4 */
+        }
+
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 15px; /* Добавлен padding для отступов между карточками */
+        }
+
+        .card {
+            border: 1px solid #ddd; /* Граница карточки */
+            border-radius: 8px; /* Закругленные углы */
+            overflow: hidden; /* Чтобы изображение не выходило за границы */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень карточки */
+            transition: transform 0.3s ease-in-out; /* Анимация при наведении */
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Увеличение размера при наведении */
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #555;
+        }
+    </style>
+
+    <div class="container my-5 mt-4">
+        <div class="row">
+            {% for i in info_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ i.image.url }}" class="card-img-top" alt="{{ i.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ i.name }}</h5>
+                            <p class="card-text">{{ i.age }} Years old </p>
+                            <p class="card-text">{{ i.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

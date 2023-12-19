@@ -1,0 +1,23 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    {{set.name}}
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+
+    <h2>{{set.name}}</h2>
+    <button><a href="{% url 'copy_set' username set.slug %}">Copy set</a></button>
+    <p>User: {{ username }}</p>
+    <p>Downloads: {{ set.downloads }}</p>
+    <p>Total cards: {{ cards_count }}</p>
+    <p>Cards:</p>
+    {% for card in cards %}
+        <p>{{ card.front_side }} - {{ card.back_side }}</p>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Profile</title>
+        <style>
+            body {
+                background: #FDFDFD;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+                color: #000;
+            }
+
+            h2 {
+                margin: 0;
+                font-size: 24px;
+                color: #000;
+            }
+
+            form {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                width: fit-content;
+                padding: 10px;
+                background-color: #007AFF;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                margin-top: 10px;
+                transition: background 0.3s;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+            button a {
+                color: white;
+                text-decoration: none;
+            }
+
+            hr {
+                margin: 20px 0;
+                width: 100%;
+                border: 1px solid #007AFF;
+            }
+
+            a {
+                color: #007AFF;
+                text-decoration: none;
+                display: block; /* Добавлено для правильного отображения блоков */
+                margin-bottom: 10px; /* Увеличено расстояние между блоками */
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            /* Добавлен стиль для распределения пространства между именем пользователя и email */
+            p {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Profile</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+        <p>
+            <a href="{% url 'change_password' %}">Change password</a>
+            <hr>
+            <button><a href="{% url 'lending_page' %}">Log out</a></button>
+            <button><a href="{% url 'delete_account_confirm' %}">Delete account</a></button>
+        </p>
+    </body>
+{% endblock %}

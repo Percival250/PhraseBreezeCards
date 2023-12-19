@@ -1,0 +1,22 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    Cards in {{ set.name }}
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+
+    <h2>Cards in {{ set.name }}:</h2>
+    {% for card in cards %}
+        <p>
+            {{ card.front_side }} - {{ card.back_side }}
+            <button><a href="{% url 'delete_card' set.slug card.id %}">Delete card</a></button>
+            <button><a href="{% url 'edit_card' set.slug card.id %}">Edit card</a></button>
+        </p>
+    {% endfor %}
+
+{% endblock %}

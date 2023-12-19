@@ -1,0 +1,67 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+    <style>
+        body {
+            background-color: #FDFDFD;
+            color: #000;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 960px;
+            margin-bottom: 50px;
+        }
+
+        form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px; /* Увеличил максимальную ширину карточки */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .nav-link {
+            color: #007AFF;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        {% for i in contacts_list %}
+            <form>
+                <div class="form-group">
+                    <a class="nav-link" href="#">{{i.email}}</a>
+                </div>
+                <div class="form-group">
+                    <a class="nav-link" href="#">{{i.phone_number}}</a>
+                </div>
+                <div class="form-group">
+                    <a class="nav-link" href="{{i.telegram_media_link}}">Telegram</a>
+                </div>
+                <div class="form-group">
+                    <a class="nav-link" href="{{i.instagram_media_link}}">Instagram</a>
+                </div>
+            </form>
+        {% endfor %}
+    </div>
+{% endblock %}
+

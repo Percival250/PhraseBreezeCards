@@ -1,0 +1,107 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+        <style>
+            body {
+                background: #FDFDFD;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+                color: #FDFDFD;
+            }
+
+            h2 {
+                margin: 0;
+                font-size: 20px;
+                color: #000;
+            }
+            h3 {
+                margin: 0;
+                font-size: 20px;
+                color: #FDFDFD;
+            }
+
+
+            a {
+                text-decoration: none;
+            }
+
+            .card-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .card {
+                width: 300px;
+                height: 150px;
+                background: linear-gradient(to right, #007AFF, #8F00FF);
+                color: white;
+                margin: 10px;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: left;
+                cursor: pointer;
+                transition: background 0.3s;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .card:hover {
+                background: linear-gradient(to right, #8F00FF, #007AFF);
+            }
+
+            button {
+                width: fit-content;
+                padding: 10px;
+                background-color: #007AFF; /* Цвет синей кнопки */
+                color: white;
+                border: none;
+                border-radius: 20px; /* Увеличение радиуса для создания более овальной формы */
+                cursor: pointer;
+                align-self: flex-end;
+                margin-top: 10px;
+                transition: background 0.3s;
+            }
+
+            button:hover {
+                background-color: #0056b3; /* Цвет при наведении */
+            }
+
+            button a {
+                color: white;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Your sets</h2>
+        {% if sets %}
+            <div class="card-container">
+                {% for set in sets %}
+                    <a href="{% url 'set' set.slug %}">
+                        <div class="card">
+                            <h3>{{ set.name }}</h3>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No sets yet</p>
+        {% endif %}
+        <button><a href="{% url 'create_set' %}">Create new set</a></button>
+    </body>
+{% endblock %}

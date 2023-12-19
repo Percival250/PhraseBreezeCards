@@ -1,0 +1,104 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Landing Page{% endblock %}
+
+{% block header %}
+    {% include 'header_2.html' %}
+{% endblock %}
+
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Landing Page</title>
+        <style>
+            /* Стили оставим без изменений */
+
+            /* Новые стили */
+            .container {
+                max-width: 960px;
+                margin: 50px auto;
+                text-align: center;
+            }
+
+            .main-title {
+                font-size: 36px;
+                margin-bottom: 20px;
+                color: #007AFF;
+            }
+
+            .sub-title {
+                font-size: 24px;
+                margin-bottom: 40px;
+                color: #000;
+            }
+
+            .features,
+            .advantages {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 40px;
+            }
+
+            .feature,
+            .advantage {
+                width: 30%;
+                padding: 20px;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                margin-bottom: 20px;
+            }
+
+            .cta-section {
+                text-align: center;
+                margin-top: 40px;
+            }
+
+            .cta-button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #007AFF;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+
+            .cta-button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            {% for info in lending_list %}
+                <h1 class="main-title">{{info.heading}}</h1>
+                <p class="sub-title">{{info.subtitle}}</p>
+            {% endfor %}
+            <h1>Our features</h1>
+            <div class="features">
+                {% for info in features_list %}
+                    <div class="feature">
+                        <h3>{{info.feature}}</h3>
+                        <p>{{info.feature_description}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <h1>Our advantages</h1>
+            <div class="advantages">
+                {% for info in advantages_list %}
+                    <div class="advantage">
+                        <h3>{{info.advantages}}</h3>
+                        <p>{{info.advantage_description}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <p>Are you ready to study?</p>
+            <div class="cta-section">
+                <a href="{% url 'login' %}" class="cta-button">Start</a>
+            </div>
+        </div>
+    </body>
+{% endblock %}
