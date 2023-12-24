@@ -1,17 +1,80 @@
 {% extends 'base_generic.html' %}
 
-{% block title %}Delete account{% endblock %}
+{% block title %}
+    Delete Account
+{% endblock %}
 
 {% block header %}
     {% include 'header.html' %}
 {% endblock %}
 
 {% block content %}
+    <style>
+        /* Идеальный стиль для страницы удаления аккаунта */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; /* Темно-серый цвет текста */
+            font-family: Arial, sans-serif;
+        }
 
-    Are you sure you want to delete account?
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #000; /* Красный цвет для заголовка */
+        }
+
+        p {
+            margin-top: 20px; /* Добавлен отступ сверху для параграфа */
+        }
+
+        .delete-text {
+            margin-bottom: 20px; /* Добавлен отступ снизу для текста перед кнопками */
+        }
+
+        .delete-btn {
+            padding: 10px 20px;
+            background-color: #FF3B30; /* Красный цвет для кнопки удаления */
+            color: #FFF; /* Белый цвет текста */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-right: 10px; /* Добавлен отступ справа для кнопки */
+            text-decoration: none; /* Убрано подчеркивание у ссылки */
+            display: inline-block; /* Убрана строчная вертикаль */
+        }
+
+        .delete-btn:hover {
+            background-color: #FF1604; /* Тёмно-красный цвет при наведении */
+        }
+
+        .cancel-btn {
+            padding: 10px 20px;
+            background-color: #007AFF; /* Синий цвет для кнопки отмены */
+            color: #FFF; /* Белый цвет текста */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none; /* Убрано подчеркивание у ссылки */
+            display: inline-block; /* Убрана строчная вертикаль */
+        }
+
+        .cancel-btn:hover {
+            background-color: #0056b3; /* Тёмно-синий цвет при наведении */
+        }
+    </style>
+
+    <h2>Delete Account</h2>
+    <p class="delete-text">Are you sure you want to delete your account?</p>
     <p>
-        <button><a href="{% url 'delete_account' %}">Delete</a></button>
-        <button><a href="{% url 'profile' %}">Cancel</a></button>
+        <a class="delete-btn" href="{% url 'delete_account' %}">Delete</a>
+        <a class="cancel-btn" href="{% url 'profile' %}">Cancel</a>
     </p>
-
 {% endblock %}

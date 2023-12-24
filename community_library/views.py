@@ -11,7 +11,7 @@ def create_set_slug(name, user):
     num = 1
     while slug in main_app.models.Set.objects.filter(user=user).values_list('slug', flat=True):
         slug = slugify(name)
-        slug += f'- {num}'
+        slug += f'-{num}'
         num += 1
     return slug
 
@@ -22,7 +22,7 @@ def library_view(request):
         if form.is_valid():
             category = form.cleaned_data['category']
             search = form.cleaned_data['name']
-            if category.id == 5:
+            if category.id == 1:
                 sets = models.Set.objects.filter(is_published=True, name__icontains=search).order_by('-downloads')
             else:
                 sets = models.Set.objects.filter(is_published=True, category=category, name__icontains=search).order_by('-downloads')

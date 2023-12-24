@@ -9,14 +9,79 @@
 {% endblock %}
 
 {% block content %}
+    <style>
+        /* Идеальный стиль для страницы с картами в наборе */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; /* Темно-серый цвет текста */
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            margin: 20px 0;
+            font-size: 24px;
+            color: #007AFF; /* Синий цвет для заголовка */
+        }
+
+        .card-container {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .card-text {
+            font-size: 16px;
+            flex-grow: 1;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            width: 120px;
+        }
+
+        a {
+            color: black; /* Черный цвет для ссылок */
+            text-decoration: none;
+        }
+
+        button.delete {
+            background-color: #dc3545; /* Красный цвет для кнопки Delete */
+        }
+
+        button.edit {
+            background-color: #007bff; /* Синий цвет для кнопки Edit */
+        }
+    </style>
 
     <h2>Cards in {{ set.name }}:</h2>
     {% for card in cards %}
-        <p>
-            {{ card.front_side }} - {{ card.back_side }}
-            <button><a href="{% url 'delete_card' set.slug card.id %}">Delete card</a></button>
-            <button><a href="{% url 'edit_card' set.slug card.id %}">Edit card</a></button>
-        </p>
+        <div class="card-container">
+            <p class="card-text">{{ card.front_side }} - {{ card.back_side }}</p>
+            <div class="button-container">
+                <button class="delete"><a href="{% url 'delete_card' set.slug card.id %}">Delete Card</a></button>
+                <button class="edit"><a href="{% url 'edit_card' set.slug card.id %}">Edit Card</a></button>
+            </div>
+        </div>
     {% endfor %}
-
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'base_generic.html' %}
 
 {% block title %}
-    Edit card
+    Create Card
 {% endblock %}
 
 {% block header %}
@@ -9,12 +9,72 @@
 {% endblock %}
 
 {% block content %}
+    <style>
+        /* Идеальный стиль для страницы создания карточки */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; /* Темно-серый цвет текста */
+            font-family: Arial, sans-serif;
+        }
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-        <button><a href="{{ referring_url }}">Cancel</a> </button>
-    </form>
+        .content-container {
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
 
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #007AFF; /* Синий цвет для заголовка */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007AFF;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #007AFF; /* Синий цвет для ссылки */
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+
+    <div class="content-container">
+        <h2>Create Card</h2>
+
+        <form action="{% url 'create_card' set.slug %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+            <a href="{% url 'set' set.slug %}">Cancel</a>
+        </form>
+    </div>
 {% endblock %}

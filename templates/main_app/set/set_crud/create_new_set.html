@@ -1,7 +1,7 @@
 {% extends 'base_generic.html' %}
 
 {% block title %}
-    Create new set
+    Create New Set
 {% endblock %}
 
 {% block header %}
@@ -9,12 +9,65 @@
 {% endblock %}
 
 {% block content %}
+    <style>
+        /* Идеальный стиль для страницы создания нового набора */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; /* Темно-серый цвет текста */
+            font-family: Arial, sans-serif;
+        }
 
-    <form action="{% url 'create_new_set' %}" method="POST">
+        form {
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #000; /* Синий цвет для заголовка */
+        }
+
+        button, button a {
+            padding: 10px 20px;
+            background-color: #007AFF;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        button:hover, button a:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #007AFF; /* Синий цвет для ссылки */
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+    <h2>Create Set</h2>
+    <form action="{% url 'create_set' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
-        <button><a href="{% url 'home' %}">Cancel</a></button>
+        <a href="{% url 'user_library' %}">Cancel</a>
     </form>
-
 {% endblock %}

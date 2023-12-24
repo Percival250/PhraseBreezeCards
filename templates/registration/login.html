@@ -1,9 +1,61 @@
-<!-- authorization/login.html -->
 {% extends 'base_generic.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}
+    Login
+{% endblock %}
 
 {% block content %}
+    <style>
+        /* Идеальный стиль для страницы входа */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; /* Темно-серый цвет текста */
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #000; /* Синий цвет для заголовка */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007AFF; /* Синий цвет для кнопки */
+            color: #FFF; /* Белый цвет текста */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Тёмно-синий цвет при наведении */
+        }
+
+        a {
+            text-decoration: none;
+            color: #007AFF; /* Синий цвет для ссылок */
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
+
     <h2>Login</h2>
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
@@ -11,5 +63,5 @@
         <button type="submit">Login</button>
     </form>
     <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
-    <p>No account?<a href="{% url 'register' %}">Create one</a></p>
+    <p>No account? <a href="{% url 'register' %}">Create one</a></p>
 {% endblock %}

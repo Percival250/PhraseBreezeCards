@@ -1,7 +1,7 @@
 {% extends 'base_generic.html' %}
 
 {% block title %}
-    {{set.name}}
+    {{ set.name }}
 {% endblock %}
 
 {% block header %}
@@ -9,16 +9,116 @@
 {% endblock %}
 
 {% block content %}
+    <style>
+        /* Специфичные стили для страницы отображения набора */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; /* Темно-серый цвет текста */
+            font-family: Arial, sans-serif;
+        }
 
-    <h2>{{set.name}}</h2>
-    <button><a href="{% url 'copy_set' username set.slug %}">Copy set</a></button>
-    {% if description %}<p>Description: {{ set.description }}</p>{% endif %}
-    <p>User: {{ username }}</p>
-    <p>Downloads: {{ set.downloads }}</p>
-    <p>Total cards: {{ cards_count }}</p>
-    <p>Cards:</p>
-    {% for card in cards %}
-        <p>{{ card.front_side }} - {{ card.back_side }}</p>
-    {% endfor %}
+        .main-container {
+            max-width: 1200px;
+            margin: 400px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .info-container {
+            flex-basis: 48%;  /* Уменьшил ширину, чтобы вместить карточки */
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .cards-container {
+            flex-basis: 48%;  /* Уменьшил ширину, чтобы вместить карточки */
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: left;
+            align-self: flex-start; /* Поднимаем блок с карточками выше */
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #007AFF; /* Синий цвет для заголовка */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007AFF;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+            display: block;
+        }
+
+        button a {
+            text-decoration: none;
+            color: #FFF;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        p.cards {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .cards-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .cards-list p {
+            flex-basis: calc(50% - 20px);
+            margin: 0;
+        }
+    </style>
+
+    <div class="main-container">
+        <div class="info-container">
+            <h2>{{ set.name }}</h2>
+            <button><a href="{% url 'copy_set' username set.slug %}">Copy Set</a></button>
+
+            {% if set.description %}
+                <p><strong>Description:</strong> {{ set.description }}</p>
+            {% endif %}
+
+            <p><strong>User:</strong> {{ username }}</p>
+            <p><strong>Downloads:</strong> {{ set.downloads }}</p>
+            <p><strong>Total Cards:</strong> {{ cards_count }}</p>
+        </div>
+
+        <div class="cards-container">
+            <p class="cards"><strong>Cards:</strong></p>
+
+            <div class="cards-list">
+                {% for card in cards %}
+                    <p>{{ card.front_side }} - {{ card.back_side }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

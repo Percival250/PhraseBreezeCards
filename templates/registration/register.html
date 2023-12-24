@@ -1,12 +1,75 @@
 {% extends 'base_generic.html' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}
+    Register
+{% endblock %}
 
 {% block content %}
-  <h2>Register</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-  </form>
+    <style>
+        /* Идеальный стиль для страницы регистрации */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; /* Темно-серый цвет текста */
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #007AFF; /* Синий цвет для заголовка */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            max-width: 400px; /* Ограничение ширины формы */
+            width: 100%;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333; /* Темно-серый цвет текста */
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007AFF; /* Синий цвет для кнопки */
+            color: #FFF; /* Белый цвет текста */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 15px; /* Добавлен отступ сверху для кнопки */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Тёмно-синий цвет при наведении */
+        }
+    </style>
+
+    <h2>Register</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
 {% endblock %}

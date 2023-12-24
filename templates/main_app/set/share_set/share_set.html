@@ -1,18 +1,83 @@
 {% extends 'base_generic.html' %}
 
-{% block title %}Share set{% endblock %}
+{% block title %}
+    Share Set
+{% endblock %}
 
 {% block header %}
     {% include 'header.html' %}
 {% endblock %}
 
 {% block content %}
+    <style>
+        /* Идеальный стиль для страницы публикации (шаринга) набора */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; /* Темно-серый цвет текста */
+            font-family: Arial, sans-serif;
+        }
 
+        form {
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #333; /* Темно-серый цвет текста */
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button, button a {
+            padding: 10px 20px;
+            background-color: #007AFF;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        button:hover, button a:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #007AFF; /* Синий цвет для ссылки */
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+    <h2>Share set</h2>
     <form action="{% url 'share_set' set.slug %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Share set</button>
-        <button><a href="{% url 'set' set.slug %}">Cancel</a> </button>
-    </form>
 
+        <button type="submit">Share Set</button>
+        <a href="{% url 'set' set.slug %}">Cancel</a>
+    </form>
 {% endblock %}

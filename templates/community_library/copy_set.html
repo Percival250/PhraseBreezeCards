@@ -1,18 +1,87 @@
 {% extends 'base_generic.html' %}
 
-{% block title %}Copy set{% endblock %}
+{% block title %}Copy Set{% endblock %}
 
 {% block header %}
     {% include 'header.html' %}
 {% endblock %}
 
 {% block content %}
+    <style>
+        /* Специфичные стили для страницы копирования сета */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #000;
+        }
+
+        form {
+            width: 300px;
+            background-color: #FFF;
+            border: 1px solid #DDD;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #000; /* Чёрный цвет текста */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333; /* Темно-серый цвет текста */
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007AFF; /* Синий цвет для кнопки */
+            color: #FFF; /* Белый цвет текста */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Тёмно-синий цвет при наведении */
+        }
+
+        a {
+            text-decoration: none;
+            color: #007AFF; /* Синий цвет для ссылок */
+            margin-top: 10px;
+            font-size: 16px;
+            display: inline-block;
+        }
+    </style>
 
     <form action="{% url 'copy_set' username set.slug %}" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Copy set</button>
-        <button><a href="{% url 'library_set' username set.slug %}">Cancel</a> </button>
-    </form>
+        <h2>Copy Set</h2>
 
+        <label for="id_name">Set Name:</label>
+        <input type="text" id="id_name" name="name" required>
+
+        <button type="submit">Copy Set</button>
+        <a href="{% url 'library_set' username set.slug %}">Cancel</a>
+    </form>
 {% endblock %}

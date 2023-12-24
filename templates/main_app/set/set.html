@@ -9,57 +9,81 @@
 {% endblock %}
 
 {% block content %}
-    <head>
-        <meta charset="UTF-8">
-        <title>{{ set.name }}</title>
-        <style>
-            body {
-                background: #FDFDFD;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-                margin: 0;
-                color: #000;
-            }
+    <style>
+        /* Идеальный стиль для страницы набора карт */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; /* Темно-серый цвет текста */
+            font-family: Arial, sans-serif;
+        }
 
-            h2 {
-                margin: 0;
-                font-size: 20px;
-                color: #000;
-            }
+        h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #000; /* Черный цвет текста */
+        }
 
-            a {
-                text-decoration: none;
-                color: #000;
-            }
+        a {
+            text-decoration: none;
+            color: #000; /* Черный цвет текста */
+        }
 
-            button {
-                padding: 10px;
-                background-color: #007AFF;
-                color: white;
-                border: none;
-                border-radius: 20px;
-                cursor: pointer;
-                margin-left: 10px;
-                transition: background 0.3s;
-            }
+        button {
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            width: 150px;
+        }
 
-            button:hover {
-                background-color: #0056b3;
-            }
-        </style>
-    </head>
-    <body>
+        button.rename {
+            background-color: #28a745; /* Зеленый цвет для кнопки Rename */
+        }
+
+        button.delete {
+            background-color: #dc3545; /* Красный цвет для кнопки Delete */
+        }
+
+        button.share {
+            background-color: #007bff; /* Синий цвет для кнопки Share */
+        }
+
+        button.learn {
+            background-color: #ffc107; /* Желтый цвет для кнопки Learn */
+        }
+
+        button.add {
+            background-color: #17a2b8; /* Голубой цвет для кнопки Add */
+        }
+
+        p {
+            font-size: 16px;
+            margin-top: 10px; /* Отступ между Total Cards и верхними кнопками */
+            margin-bottom: 20px; /* Отступ между Total Cards и нижними кнопками */
+        }
+    </style>
+
+    <div>
         <h2>{{ set.name }}</h2>
-            <button><a href="{% url 'rename_set' set.slug %}">Rename set</a></button>
-            <button><a href="{% url 'delete_set_confirm' set.slug %}">Delete set</a></button>
-            <button><a href="{% url 'share_set' set.slug %}">Share set</a></button>
+        <button class="rename"><a href="{% url 'rename_set' set.slug %}">Rename Set</a></button>
+        <button class="delete"><a href="{% url 'delete_set_confirm' set.slug %}">Delete Set</a></button>
+        <button class="share"><a href="{% url 'share_set' set.slug %}">Share Set</a></button>
         <p>
-            <a href="{% url 'set_cards' set.slug %}">Total cards</a>: {{ cards_count }}
+            <a href="{% url 'set_cards' set.slug %}">Total Cards</a>: {{ cards_count }}
         </p>
-        <button><a href="{% url 'create_card' set.slug %}">Add new card</a></button>
-        <button><a href="{% url 'learn_cards' set.slug %}">Learn cards</a></button>
-    </body>
+        <button class="add"><a href="{% url 'create_card' set.slug %}">Add New Card</a></button>
+        <button class="learn"><a href="{% url 'learn_cards' set.slug %}">Learn Cards</a></button>
+    </div>
 {% endblock %}

@@ -1,98 +1,109 @@
 {% extends 'base_generic.html' %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}
+    Profile
+{% endblock %}
 
 {% block header %}
     {% include 'header.html' %}
 {% endblock %}
 
 {% block content %}
-    <head>
-        <meta charset="UTF-8">
-        <title>Profile</title>
-        <style>
-            body {
-                background: #FDFDFD;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-                margin: 0;
-                color: #000;
-            }
+    <style>
+        /* Идеальный стиль для страницы профиля */
+        body {
+            background: #FDFDFD;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333; /* Темно-серый цвет текста */
+            font-family: Arial, sans-serif;
+        }
 
-            h2 {
-                margin: 0;
-                font-size: 24px;
-                color: #000;
-            }
+        h2 {
+            font-size: 30px;
+            margin: 20px 0 10px; /* Увеличен верхний отступ, уменьшены нижний и правый отступы */
+            color: #000; /* Синий цвет для заголовка */
+        }
 
-            form {
-                margin-top: 20px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
+        form {
+            width: 100%; /* Форма теперь занимает 100% ширины контейнера */
+            max-width: 400px; /* Ограничение максимальной ширины формы */
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-            button {
-                width: fit-content;
-                padding: 10px;
-                background-color: #007AFF;
-                color: white;
-                border: none;
-                border-radius: 20px;
-                cursor: pointer;
-                margin-top: 10px;
-                transition: background 0.3s;
-            }
+        button {
+            padding: 10px 20px;
+            background-color: #007AFF; /* Синий цвет для кнопки */
+            color: #FFF; /* Белый цвет текста */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
 
-            button:hover {
-                background-color: #0056b3;
-            }
+        button:hover {
+            background-color: #0056b3; /* Тёмно-синий цвет при наведении */
+        }
 
-            button a {
-                color: white;
-                text-decoration: none;
-            }
+        hr {
+            margin: 20px 0;
+            width: 100%;
+            border: 1px solid #007AFF;
+        }
 
-            hr {
-                margin: 20px 0;
-                width: 100%;
-                border: 1px solid #007AFF;
-            }
+        a {
+            color: #007AFF;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
 
-            a {
-                color: #007AFF;
-                text-decoration: none;
-                display: block; /* Добавлено для правильного отображения блоков */
-                margin-bottom: 10px; /* Увеличено расстояние между блоками */
-            }
+        a:hover {
+            text-decoration: underline;
+        }
 
-            a:hover {
-                text-decoration: underline;
-            }
+        /* Перемещение стиля для распределения пространства между именем пользователя и email внутрь параграфа */
+        p {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px; /* Добавлен отступ сверху */
+        }
 
-            /* Добавлен стиль для распределения пространства между именем пользователя и email */
-            p {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-        </style>
-    </head>
-    <body>
-        <h2>Profile</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Save</button>
-        </form>
-        <p>
-            <a href="{% url 'change_password' %}">Change password</a>
-            <hr>
-            <button><a href="{% url 'lending_page' %}">Log out</a></button>
-            <button><a href="{% url 'delete_account_confirm' %}">Delete account</a></button>
-        </p>
-    </body>
+        /* Новые стили для блоков с кнопками */
+        .button-block {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .button-block button {
+            flex-basis: 48%; /* Оставляем небольшой отступ между кнопками */
+        }
+    </style>
+
+    <h2>Profile</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <p>
+        <a href="{% url 'change_password' %}">Change password</a>
+        <hr>
+        <div class="button-block">
+            <a href="{% url 'lending_page' %}">Log out</a>
+            <a href="{% url 'delete_account_confirm' %}">Delete account</a>
+        </div>
+    </p>
 {% endblock %}
